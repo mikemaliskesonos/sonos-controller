@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import { getHouseHolds } from '../utils/auth';
-import FavoritesList from '../components/favoritesList';
+import FavoritesList from '../components/favorites';
+import Layout from '../components/layout';
 
 const theme = {
   global: {
@@ -26,11 +27,11 @@ class ShortcutsAPI extends Component {
 
   render() {
     return (
-        <div>
+        <Layout>
             {this.state.loading ? <div>Loading Household</div> : <div></div>}
             {this.state.error ? <div>{this.state.error}</div> : <div></div>}
             {this.state.households.map((hh, i) => <FavoritesList key={i} householdId={hh.id}/>)}
-        </div>
+        </Layout>
           
     );
   }

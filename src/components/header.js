@@ -1,22 +1,25 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Heading } from 'grommet';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 
 import AppBar from './appBar';
 
+import './header.css';
+
 const Header = () => (
-  <AppBar>
-    <Link
-      to="/"
-      style={{
-        color: 'white',
-        textDecoration: 'none',
-      }}
-    >
-      <Heading level='3' margin='none'>Sonos API Demo</Heading>
-    </Link>
-  </AppBar>
+  <Navbar className="navbar-danger-mouse" expand="lg" variant="dark">
+  <Navbar.Brand href="/" className="mist">
+    Sonos
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto navbar-danger-mouse">
+      <Nav.Link href="/sonos/">Controls</Nav.Link>
+      <Nav.Link href="/shortcuts/">Shortcuts</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+  </Navbar>
 );
 
 Header.propTypes = {

@@ -5,6 +5,9 @@ import { Grommet, Heading } from 'grommet';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { isLoggedIn } from '../utils/auth';
+import { Button, Jumbotron, Table } from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const theme = {
   global: {
@@ -40,10 +43,34 @@ class IndexPage extends Component {
             <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
             {this.state.loggedIn ? 
               <div>
-                <Link to="/sonos/"><Heading color='dark-2'>Sonos Control</Heading></Link><br/>
-                <Link to="/demo/"><Heading color='dark-2'>AudioClip Demo</Heading></Link><br/>
+                  <h1>Welcome!</h1>
+                  <Table striped bordered hover>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>HHID</td>
+                        <td>IDK</td>
+                      </tr>
+                    </tbody>
+                  </Table>
               </div>
-              : <a href="/.netlify/functions/auth"><Heading color='dark-2'>Login</Heading></a>
+              :
+              <div>
+                <Jumbotron style={{ margin: '10px' }}>
+                  <h1>Welcome!</h1>
+                  <p>
+                    To control your system, please login with your Sonos account
+                  </p>
+                  <p>
+                    <Button variant="primary" href="/.netlify/functions/auth">Login</Button>
+                  </p>
+                </Jumbotron>
+              </div>
             }
           </div>
         </Grommet>

@@ -8,7 +8,7 @@ export const getUser = () => (window.localStorage.sonosUser
 
 export const setUser = (user) => {
   if (isBrowser) {
-    console.log('SETU USER', user);
+    console.log('SET USER', user);
     window.localStorage.sonosUser = JSON.stringify(user);
   }
 };
@@ -42,3 +42,26 @@ export const isLoggedIn = async () => {
 
   return !!user.token;
 };
+
+export const getHouseHolds = (component) => {
+  const sonosUser = getUser();
+  component.setState({ loading: true });
+  axios
+    .post('/.netlify/functions/sonos-households', { accessToken: sonosUser.token.access_token })
+    .then((res) => {
+      component.setState({
+        loading: false,
+        households: res.data.households,
+      });
+      return res.data.households;
+    })
+    .catch((err) => {
+      console.log(err);
+      component.setState({
+        error: err.message,
+        loading: false,
+      });
+      return null;
+    });
+    
+}

@@ -99,7 +99,7 @@ class SonosFavorite extends Component {
   render() {
     const fav = this.props.favorite;
     return (
-      <img src={fav.imageUrl} ></img>
+      <img src={fav.imageUrl} clickable="true" onClick={() => { this.playFavorite(fav.id); }}></img>
       // <Card style={{ width: '18rem' }}>
       //   <Card.Img variant="top" src={fav.imageUrl} />
       //   <Card.ImgOverlay>
